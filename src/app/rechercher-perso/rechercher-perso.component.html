@@ -1,0 +1,15 @@
+<input [ngClass]="{error: error !== ''}" type="text" [(ngModel)]="recherche"/>
+<button (click)="rechercher()">Rechercher</button>
+<app-barre-erreur [message]="error" *ngIf="error !== ''"></app-barre-erreur>
+<ul>
+  <li *ngFor="let item of resultats">
+    <h2  [ngClass]="item.name">{{item.name}}</h2>
+    <p>Gender : {{item.gender}}</p>
+    <p>Birth Year : {{item.birth_year}}</p>
+    <p>count : {{item.count}}</p>
+    <a href="{{item.url}}">URL</a>
+    <a [routerLink]="['/perso', item.count]">Voir les détails</a>
+  </li>
+</ul>
+<p *ngIf="resultats.length === 0 && isRechercheOnce">Aucun personnage n'a été trouvé</p>
+<!--<pagination [page]="pageCourante" [total]="pages" (pageChanged)="changerPage($event)"></pagination>-->
